@@ -1,0 +1,13 @@
+x.dataRows[0].data.id
+x.dataRows[0].data.name
+x.dataRows[0].data.projectId
+x.dataRows[0].data.projectName
+x.dataRows[0].data.status
+x.dataRows[0].data.importance
+x.dataRows[0].data.description
+x.dataRows[0].data.createdOn
+x.dataRows[0].data.createdBy
+x.dataRows[0].data.lastModifiedBy
+x.dataRows[0].data.lastModifiedOn
+x.dataRows[0].data.steps
+x.dataRows[0].data.kind
