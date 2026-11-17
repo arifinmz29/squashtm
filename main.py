@@ -15,9 +15,7 @@ if PROJECT_ROOT not in sys.path:
 
 from scripts import (
     delete_from_testrun_by_testcaseid,
-    export_test_case_by_project,
     export_test_cases_by_folder,
-    get_iteration_ids_from_campaign,
     manual_regression_preparation,
     update_custom_field_test_case,
     update_status_test_run_sqtm_multi,
@@ -101,7 +99,7 @@ def show_main_menu() -> str:
     """Menampilkan menu utama interaktif dan mengembalikan pilihan user."""
     print_banner(
         "SQUASHTM & REGRESSION AUTOMATION CLI",
-        "Pilih fitur yang ingin dijalankan (gunakan angka 1-9 atau 0 untuk keluar)",
+        "Pilih fitur yang ingin dijalankan (gunakan angka 1-7 atau 0 untuk keluar)",
     )
 
     menu_items = [
@@ -137,16 +135,6 @@ def show_main_menu() -> str:
         ),
         (
             "7",
-            "Export Test Case by Project Schema (.csv)",
-            "Export test case project menggunakan schema JSON & mapping CSV",
-        ),
-        (
-            "8",
-            "Fetch Iteration IDs dari Campaign ID (.csv)",
-            "Ambil daftar Iteration ID dari Campaign Statistics dan simpan ke CSV",
-        ),
-        (
-            "9",
             "Cek Credential & Test Koneksi",
             "Verifikasi konfigurasi credential_tools.json (SquashTM, DB, Google Sheets)",
         ),
@@ -164,10 +152,10 @@ def show_main_menu() -> str:
 
     print()
     while True:
-        choice = input(f"{Color.BOLD}Masukkan pilihan menu [0-9]: {Color.RESET}").strip()
+        choice = input(f"{Color.BOLD}Masukkan pilihan menu [0-7]: {Color.RESET}").strip()
         if choice in {item[0] for item in menu_items}:
             return choice
-        print_warn("Pilihan tidak valid. Silakan masukkan angka 0 sampai 9.")
+        print_warn("Pilihan tidak valid. Silakan masukkan angka 0 sampai 7.")
 
 
 def main() -> int:
@@ -180,9 +168,7 @@ def main() -> int:
         "4": update_custom_field_test_case.run_interactive,
         "5": update_status_test_run_sqtm_multi.run_interactive,
         "6": update_status_test_run_sqtm_multi_v2.run_interactive,
-        "7": export_test_case_by_project.run_interactive,
-        "8": get_iteration_ids_from_campaign.run_interactive,
-        "9": check_credentials_and_connections,
+        "7": check_credentials_and_connections,
     }
 
     try:

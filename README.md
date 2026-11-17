@@ -26,9 +26,7 @@ squashtm/
 │   ├── manual_regression_preparation.py          # [Fitur 3] Query DB Reporting -> Google Sheet ({tag}_report)
 │   ├── update_custom_field_test_case.py          # [Fitur 4] Update Custom Field Test Case dari Google Sheet
 │   ├── update_status_test_run_sqtm_multi.py      # [Fitur 5] Mass-Update Status Test Run V1 (Single Status)
-│   ├── update_status_test_run_sqtm_multi_v2.py   # [Fitur 6] Mass-Update Status Test Run V2 (Dynamic Mapping)
-│   ├── export_test_case_by_project.py            # [Fitur 7] Export Test Case by Project Schema (.csv)
-│   └── get_iteration_ids_from_campaign.py        # [Fitur 8] Ambil daftar Iteration ID dari Campaign ke CSV
+│   └── update_status_test_run_sqtm_multi_v2.py   # [Fitur 6] Mass-Update Status Test Run V2 (Dynamic Mapping)
 └── data_files/
     ├── csv/                                      # Input/Output file CSV & laporan eksekusi
     ├── json/                                     # File JSON sementara (mis. folder_tree.json)
@@ -129,12 +127,12 @@ Jalankan `main.py` dari root folder repository:
 python3 main.py
 ```
 
-Anda akan disajikan menu interaktif bernomor (`1` s/d `9`, atau `0` untuk keluar):
+Anda akan disajikan menu interaktif bernomor (`1` s/d `7`, atau `0` untuk keluar):
 - Pilih nomor fitur yang diinginkan.
 - Aplikasi akan menanyakan variabel/parameter yang diperlukan satu per satu.
 - Setiap prompt memiliki **nilai default** di dalam tanda kurung siku `[...]`. Tekan **Enter** jika ingin langsung menggunakan nilai default tersebut.
 - Sebelum mengeksekusi perubahan, aplikasi akan menampilkan **Konfirmasi Parameter**.
-- Anda dapat memilih menu **`[9] Cek Credential & Test Koneksi`** kapan saja untuk memverifikasi apakah login SquashTM, koneksi PostgreSQL, dan autentikasi Google Sheets sudah berfungsi dengan baik.
+- Anda dapat memilih menu **`[7] Cek Credential & Test Koneksi`** kapan saja untuk memverifikasi apakah login SquashTM, koneksi PostgreSQL, dan autentikasi Google Sheets sudah berfungsi dengan baik.
 
 ### Mode 2: Menjalankan Modul Secara Terpisah (Interaktif maupun Argumen CLI)
 Setiap file di dalam folder `scripts/` tetap dapat dijalankan secara mandiri:
@@ -260,9 +258,3 @@ Versi lanjutan untuk mass-update status Test Run lintas Iteration yang membaca k
     --header-test-id "tc_test_id" \
     --header-status "Status Rerun"
   ```
-
----
-
-### Fitur 7 & 8: Utilitas Tambahan
-- **Fitur 7 (`scripts/export_test_case_by_project.py`)**: Mengekspor Test Case menggunakan endpoint `/backend/search/test-case` berdasarkan payload di `data_files/schemas/search_tc_schema.json` dan mapping kolom di `data_files/csv/search_tc_mapping_*.csv`.
-- **Fitur 8 (`scripts/get_iteration_ids_from_campaign.py`)**: Mengambil daftar Iteration ID dari sebuah Campaign ID dan menyimpannya ke `data_files/csv/list_iteration_ids_{campaign_id}.csv`.
