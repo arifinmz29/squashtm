@@ -26,7 +26,7 @@ def get_origin(base_url: str) -> str:
     parsed = urlparse(base_url)
     if parsed.scheme and parsed.netloc:
         return f"{parsed.scheme}://{parsed.netloc}"
-    return "http://172.16.80.47:8090"
+    return base_url.rstrip("/")
 
 
 def get_squash_workspace_url(base_url: str) -> str:

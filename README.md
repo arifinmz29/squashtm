@@ -45,7 +45,7 @@ squashtm/
 - Disarankan menggunakan *virtual environment* (`venv`).
 
 ```bash
-cd /Users/muhammadarifin/Documents/Code/squashtm
+cd squashtm
 
 # Opsional: Buat dan aktifkan virtual environment
 python3 -m venv .venv
@@ -116,7 +116,7 @@ Seluruh kredensial (**SquashTM**, **Database PostgreSQL Reporting**, dan **Googl
      }
    }
    ```
-3. **Penting untuk Fitur Google Sheets**: Pastikan Google Spreadsheet yang Anda gunakan sudah dibagikan (*Share* sebagai **Editor**) ke alamat `client_email` Service Account Anda (contoh: `squashtm-integration@squashtm-integration.iam.gserviceaccount.com`).
+3. **Penting untuk Fitur Google Sheets**: Pastikan Google Spreadsheet yang Anda gunakan sudah dibagikan (*Share* sebagai **Editor**) ke alamat `client_email` Service Account Anda (contoh: `YOUR_SERVICE_ACCOUNT_EMAIL@YOUR_PROJECT_ID.iam.gserviceaccount.com`).
 
 ---
 

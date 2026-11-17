@@ -134,7 +134,7 @@ def export_to_google_sheet(
         spreadsheet = client.open(spreadsheet_name)
     except Exception as e:
         client_email = get_gsheet_config().get(
-            "client_email", "squashtm-integration@squashtm-integration.iam.gserviceaccount.com"
+            "client_email", "YOUR_SERVICE_ACCOUNT_EMAIL@YOUR_PROJECT_ID.iam.gserviceaccount.com"
         )
         print_error(f"Gagal membuka spreadsheet '{spreadsheet_name}': {e}")
         print_info(f"Pastikan Anda telah membagikan akses Editor spreadsheet ke: {client_email}")

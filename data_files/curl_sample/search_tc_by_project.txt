@@ -1,10 +1,10 @@
-curl --location 'https://synthesis.thelionparcel.com/squash/backend/search/test-case' \
+curl --location 'https://YOUR_SQUASHTM_HOST/squash/backend/search/test-case' \
 --header 'accept: application/json, text/plain, */*' \
 --header 'accept-language: en-US,en;q=0.9,id-ID;q=0.8,id;q=0.7' \
 --header 'content-type: application/json' \
---header 'origin: https://synthesis.thelionparcel.com' \
+--header 'origin: https://YOUR_SQUASHTM_HOST' \
 --header 'priority: u=1, i' \
---header 'referer: https://synthesis.thelionparcel.com/squash/search/test-case' \
+--header 'referer: https://YOUR_SQUASHTM_HOST/squash/search/test-case' \
 --header 'sec-ch-ua: "Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"' \
 --header 'sec-ch-ua-mobile: ?0' \
 --header 'sec-ch-ua-platform: "macOS"' \
@@ -12,8 +12,8 @@ curl --location 'https://synthesis.thelionparcel.com/squash/backend/search/test-
 --header 'sec-fetch-mode: cors' \
 --header 'sec-fetch-site: same-origin' \
 --header 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36' \
---header 'x-xsrf-token: 485847c7-5a5c-473a-ab8a-c3a0153e2070' \
---header 'Cookie: JSESSIONID=668C223F2CCD3EEF495CD8390E345094; XSRF-TOKEN=485847c7-5a5c-473a-ab8a-c3a0153e2070' \
+--header 'x-xsrf-token: YOUR_XSRF_TOKEN' \
+--header 'Cookie: JSESSIONID=YOUR_JSESSIONID; XSRF-TOKEN=YOUR_XSRF_TOKEN' \
 --data '{
     "gridRequest": 1,
     "size": 1,
