@@ -164,15 +164,20 @@ Menghapus Test Case dari Iteration Test Plan di SquashTM berdasarkan daftar Test
 ---
 
 ### Fitur 2: Export Test Cases by Folder (`scripts/export_test_cases_by_folder.py`)
-Mengekspor seluruh Test Case dari folder tertentu di SquashTM ke file `.xls` per sub-folder lalu menggabungkannya menjadi satu file `.xlsx`.
+Mengekspor seluruh Test Case dari folder tertentu di SquashTM ke file `.xls` per sub-folder (default: **2 level di bawah folder utama** + *auto-fallback* rekursif jika suatu sub-folder melebihi batas 65.536 baris `.xls` atau mengalami timeout) lalu menggabungkannya menjadi satu file `.xlsx`.
 
 - **Variabel Interaktif**:
   - **Library Name**: Pilihan `Genesis`, `Customer Apps`, `Website`, atau input manual.
-  - **Folder Name**: Nama folder yang ingin diekspor (default: `New Regression Testing`).
+  - **Folder Target**: Nama folder (default: `New Regression Testing`), Node ID (`10` / `TestCaseFolder-10`), atau URL folder SquashTM.
+  - **Export Depth**: Kedalaman level sub-folder di bawah folder utama (default: `2`).
 - **Output File**: `data_files/xls/export_by_folder_{folder_name}_{timestamp}.xlsx`
 - **Contoh Eksekusi via CLI Flags**:
   ```bash
-  python3 scripts/export_test_cases_by_folder.py -l "Genesis" -f "New Regression Testing"
+  # Export menggunakan nama folder dengan kedalaman 2 level di bawahnya (default)
+  python3 scripts/export_test_cases_by_folder.py -l "Genesis" -f "New Regression Testing" -d 2
+
+  # Export menggunakan URL folder atau ID folder langsung
+  python3 scripts/export_test_cases_by_folder.py -l "Genesis" -f "https://synthesis.thelionparcel.com/squash/test-case-workspace/test-case-folder/10/content?anchor=dashboard" -d 2
   ```
 
 ---
