@@ -26,7 +26,8 @@ squashtm/
 │   ├── manual_regression_preparation.py          # [Fitur 3] Query DB Reporting -> Google Sheet ({tag}_report)
 │   ├── update_custom_field_test_case.py          # [Fitur 4] Update Custom Field Test Case dari Google Sheet
 │   ├── update_status_test_run_sqtm_multi.py      # [Fitur 5] Mass-Update Status Test Run V1 (Single Status)
-│   └── update_status_test_run_sqtm_multi_v2.py   # [Fitur 6] Mass-Update Status Test Run V2 (Dynamic Mapping)
+│   ├── update_status_test_run_sqtm_multi_v2.py   # [Fitur 6] Mass-Update Status Test Run V2 (Dynamic Mapping)
+│   └── search_folder_path.py                     # [Fitur 7] Cari Path Lengkap Folder hingga Sub-Folder Terdalam
 └── data_files/
     ├── csv/                                      # Input/Output file CSV & laporan eksekusi
     ├── json/                                     # File JSON sementara (mis. folder_tree.json)
@@ -127,12 +128,12 @@ Jalankan `main.py` dari root folder repository:
 python3 main.py
 ```
 
-Anda akan disajikan menu interaktif bernomor (`1` s/d `7`, atau `0` untuk keluar):
+Anda akan disajikan menu interaktif bernomor (`1` s/d `8`, atau `0` untuk keluar):
 - Pilih nomor fitur yang diinginkan.
 - Aplikasi akan menanyakan variabel/parameter yang diperlukan satu per satu.
 - Setiap prompt memiliki **nilai default** di dalam tanda kurung siku `[...]`. Tekan **Enter** jika ingin langsung menggunakan nilai default tersebut.
 - Sebelum mengeksekusi perubahan, aplikasi akan menampilkan **Konfirmasi Parameter**.
-- Anda dapat memilih menu **`[7] Cek Credential & Test Koneksi`** kapan saja untuk memverifikasi apakah login SquashTM, koneksi PostgreSQL, dan autentikasi Google Sheets sudah berfungsi dengan baik.
+- Anda dapat memilih menu **`[8] Cek Credential & Test Koneksi`** kapan saja untuk memverifikasi apakah login SquashTM, koneksi PostgreSQL, dan autentikasi Google Sheets sudah berfungsi dengan baik.
 
 ### Mode 2: Menjalankan Modul Secara Terpisah (Interaktif maupun Argumen CLI)
 Setiap file di dalam folder `scripts/` tetap dapat dijalankan secara mandiri:
@@ -262,4 +263,24 @@ Versi lanjutan untuk mass-update status Test Run lintas Iteration yang membaca k
     --sheet-name "Run_Manual_20261008" \
     --header-test-id "tc_test_id" \
     --header-status "Status Rerun"
+  ```
+
+---
+
+### Fitur 7: Search Folder Path (`scripts/search_folder_path.py`)
+Mencari path lengkap folder di SquashTM hingga sub-folder paling dalam berdasarkan nama sebagian atau seluruh nama folder (case-insensitive), menampilkan daftar hasilnya di terminal, serta menyimpan salinannya ke file CSV di `data_files/csv/`.
+
+- **Variabel Interaktif**:
+  - **Library Name**: Pilihan `Genesis`, `Customer App`, `Website`, `All` (semua library), atau input manual nama / ID / URL library SquashTM.
+  - **Folder Name**: Teks sebagian atau seluruh nama folder yang ingin dicari.
+- **Output CSV**: `data_files/csv/search_folder_path_{library}_{folder}_{timestamp}.csv`
+  - Kolom: `no`, `library_name`, `folder_id`, `folder_name`, `folder_path`, `folder_url`
+- **Contoh Eksekusi via CLI Flags**:
+  ```bash
+  # Cari folder mengandung kata "Order by AI" pada library Website
+  python3 scripts/search_folder_path.py -l "Website" -f "Order by AI"
+
+  # Cari menggunakan URL library SquashTM atau di semua library ("All")
+  python3 scripts/search_folder_path.py -l "https://synthesis.thelionparcel.com/squash/test-case-workspace/test-case-library/3/content?anchor=dashboard" -f "Development Test Case"
+  python3 scripts/search_folder_path.py -l "All" -f "Regression"
   ```

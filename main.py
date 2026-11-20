@@ -17,6 +17,7 @@ from scripts import (
     delete_from_testrun_by_testcaseid,
     export_test_cases_by_folder,
     manual_regression_preparation,
+    search_folder_path,
     update_custom_field_test_case,
     update_status_test_run_sqtm_multi,
     update_status_test_run_sqtm_multi_v2,
@@ -99,7 +100,7 @@ def show_main_menu() -> str:
     """Menampilkan menu utama interaktif dan mengembalikan pilihan user."""
     print_banner(
         "SQUASHTM & REGRESSION AUTOMATION CLI",
-        "Pilih fitur yang ingin dijalankan (gunakan angka 1-7 atau 0 untuk keluar)",
+        "Pilih fitur yang ingin dijalankan (gunakan angka 1-8 atau 0 untuk keluar)",
     )
 
     menu_items = [
@@ -135,6 +136,11 @@ def show_main_menu() -> str:
         ),
         (
             "7",
+            "Search Folder Path (Deep Sub-Folder Search)",
+            "Cari path lengkap folder SquashTM sampai sub-folder terdalam & simpan ke CSV",
+        ),
+        (
+            "8",
             "Cek Credential & Test Koneksi",
             "Verifikasi konfigurasi credential_tools.json (SquashTM, DB, Google Sheets)",
         ),
@@ -152,10 +158,10 @@ def show_main_menu() -> str:
 
     print()
     while True:
-        choice = input(f"{Color.BOLD}Masukkan pilihan menu [0-7]: {Color.RESET}").strip()
+        choice = input(f"{Color.BOLD}Masukkan pilihan menu [0-8]: {Color.RESET}").strip()
         if choice in {item[0] for item in menu_items}:
             return choice
-        print_warn("Pilihan tidak valid. Silakan masukkan angka 0 sampai 7.")
+        print_warn("Pilihan tidak valid. Silakan masukkan angka 0 sampai 8.")
 
 
 def main() -> int:
@@ -168,7 +174,8 @@ def main() -> int:
         "4": update_custom_field_test_case.run_interactive,
         "5": update_status_test_run_sqtm_multi.run_interactive,
         "6": update_status_test_run_sqtm_multi_v2.run_interactive,
-        "7": check_credentials_and_connections,
+        "7": search_folder_path.run_interactive,
+        "8": check_credentials_and_connections,
     }
 
     try:
